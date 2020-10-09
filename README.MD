@@ -1,5 +1,5 @@
-# zero.h
-Adding useful functions to this, currently has:
+# zero.hpp
+Adding useful C++ functions to this, currently has:
 
 
 **zero::getExecutionTime(function)**
@@ -9,9 +9,12 @@ Adding useful functions to this, currently has:
 returns the time (ms) that a function took to execute
 
 
-**zero::disassemble(address, lines, trim)**
-```cpp
-<typename T> address: starting address to disassemble (can pass function)
-unsigned lines: amount of lines to display
-bool trim: attempt to remove zeros from addresses, works fine with x86.
+**zero::disassemble(typename T> address, unsigned lines, bool trim)**
 ```
+address: starting address to disassemble (can pass function)
+lines: amount of lines to display
+trim: attempt to remove zeros from addresses, works fine with x86.
+```
+![gif](https://i.imgur.com/eaPbmc3.gif)
+
+Only works on Windows.
