@@ -13,7 +13,7 @@ returns the time (ms) that a function took to execute
 template<typename memory>
 zero::disassemble(memory address, unsigned lines, bool trim)
 ```
-```
+```md
 address: starting address to disassemble (can pass function)
 lines: amount of lines to display
 trim: attempt to remove zeros from addresses, works fine with x86.
