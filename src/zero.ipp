@@ -1,7 +1,7 @@
 // lazy template implementation
 #include "zero.hpp"
 
-template<typename function>
+template <typename function>
 float zero::getExecutionTime(function f) {
     auto getTime1 = std::chrono::high_resolution_clock::now();
     f();
@@ -12,7 +12,7 @@ float zero::getExecutionTime(function f) {
 
 static bool flag = false;
 
-template<typename memory>
+template <typename memory>
 void zero::disassemble(memory address, unsigned lines, bool trim) {
     ULONG64 addr = reinterpret_cast<ULONG64>(address);
     char buf[2048];
@@ -21,7 +21,8 @@ void zero::disassemble(memory address, unsigned lines, bool trim) {
     if (debugControl) {
         ULONG Offset = 0, DisassemblySize;
         while (debugControl->Disassemble(addr, 0, buf + Offset, sizeof(buf) - Offset, &DisassemblySize, &addr) ==
-               0 && lines-- > 0) {
+                   0 &&
+               lines-- > 0) {
             Offset += DisassemblySize - 1;
         }
     }
@@ -29,12 +30,8 @@ void zero::disassemble(memory address, unsigned lines, bool trim) {
     if (trim) {
         while (newBuf.find("0000000" != 0)) {
             try {
-                newBuf.
-                        erase(newBuf
-                                      .find("`"), 1);
-                newBuf.
-                        erase(newBuf
-                                      .find("000000000"), 7);
+                newBuf.erase(newBuf.find("`"),1);
+                newBuf.erase(newBuf.find("000000000"),7);
             } catch (std::out_of_range) {
                 break;
             }
@@ -43,10 +40,8 @@ void zero::disassemble(memory address, unsigned lines, bool trim) {
     if (!flag) {
         std::cout << ("\n//////////////////////////////////////////////////////////////////////////////////\n")
                   << newBuf << "//////////////////////////////////////////////////////////////////////////////////"
-                  <<
-                  std::endl;
+                  << std::endl;
         flag = true;
     } else
-        std::cout <<
-                  newBuf;
+        std::cout << newBuf;
 }

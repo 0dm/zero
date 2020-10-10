@@ -20,6 +20,6 @@ public:
     template<typename memory>
     static void disassemble(memory address, unsigned lines, bool trim);
 };
-#include "zero.tpp"
+#include "zero.ipp"
 
 #endif //_ZERO_HPP
