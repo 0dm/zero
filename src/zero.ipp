@@ -6,7 +6,7 @@ float zero::getExecutionTime(function f) {
     auto getTime1 = std::chrono::high_resolution_clock::now();
     f();
     auto getTime2 = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double, std::milli> fpms = getTime2 - getTime1;
+    std::chrono::duration<float, std::milli> fpms = getTime2 - getTime1;
     return fpms.count();
 }
 
@@ -16,7 +16,6 @@ template <typename memory>
 void zero::disassemble(memory address, unsigned lines, bool trim) {
     ULONG64 addr = reinterpret_cast<ULONG64>(address);
     char buf[2048];
-    int len = lines;
     IDebugControl *debugControl = zero::GetDebugControl(GetCurrentProcessId());
     if (debugControl) {
         ULONG Offset = 0, DisassemblySize;

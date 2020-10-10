@@ -1,6 +1,6 @@
 #include "zero.hpp"
 
- IDebugControl *zero::GetDebugControl(DWORD ProcessId) {
+IDebugControl *zero::GetDebugControl(DWORD ProcessId) {
     static IDebugClient *DebugClient;
     static IDebugControl *DebugControl;
     static bool DebugAttached;
@@ -8,8 +8,7 @@
     if (DebugClient == 0) {
         HMODULE dbgeng = LoadLibraryW(L"dbgeng.dll");
         if (dbgeng)
-            ((decltype(::DebugCreate) *) GetProcAddress(dbgeng, "DebugCreate"))(IID_IDebugClient,
-                                                                                reinterpret_cast<void **>(&DebugClient));
+            ((decltype(::DebugCreate) *)GetProcAddress(dbgeng, "DebugCreate"))(IID_IDebugClient, reinterpret_cast<void **>(&DebugClient));
     }
     if (DebugClient && DebugControl == 0)
         DebugClient->QueryInterface(IID_IDebugControl, reinterpret_cast<void **>(&DebugControl));
@@ -23,9 +22,9 @@
                     DebugAttached = false;
                 }
                 if (!DebugAttached) {
-                    DebugAttached = debugClient->AttachProcess(0, ProcessId, DEBUG_ATTACH_NONINVASIVE |
-                                                                             DEBUG_ATTACH_NONINVASIVE_NO_SUSPEND) ==
-                                    0 || debugClient->AttachProcess(0, ProcessId, DEBUG_ATTACH_EXISTING) == 0;
+                    DebugAttached = debugClient->AttachProcess(0, ProcessId, DEBUG_ATTACH_NONINVASIVE | DEBUG_ATTACH_NONINVASIVE_NO_SUSPEND) ==
+                                        0 ||
+                                    debugClient->AttachProcess(0, ProcessId, DEBUG_ATTACH_EXISTING) == 0;
                     debugControl->WaitForEvent(0, INFINITE);
                     LastProcessId = ProcessId;
                 }
