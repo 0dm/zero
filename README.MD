@@ -2,14 +2,17 @@
 Adding useful C++ functions to this, currently has:
 
 
-**zero::getExecutionTime(function)**
+
 ```cpp
-<typename function>
+template<typename function>
+zero::getExecutionTime(function f)
 ```
 returns the time (ms) that a function took to execute
 
-
-**zero::disassemble(\<typename memory> address, unsigned lines, bool trim)**
+```cpp
+template<typename memory>
+zero::disassemble(memory address, unsigned lines, bool trim)
+```
 ```
 address: starting address to disassemble (can pass function)
 lines: amount of lines to display
