@@ -20,9 +20,7 @@ void zero::disassemble(memory address, unsigned lines, bool trim) {
     IDebugControl *debugControl = zero::GetDebugControl(GetCurrentProcessId());
     if (debugControl) {
         ULONG Offset = 0, DisassemblySize;
-        while (debugControl->Disassemble(addr, 0, buf + Offset, sizeof(buf) - Offset, &DisassemblySize, &addr) ==
-                   0 &&
-               lines-- > 0) {
+        while (debugControl->Disassemble(addr, 0, buf + Offset, sizeof(buf) - Offset, &DisassemblySize, &addr) == 0 && lines-- > 0) {
             Offset += DisassemblySize - 1;
         }
     }
