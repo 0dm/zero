@@ -5,7 +5,6 @@
 #include <string>
 #include <windows.h>
 #include <thread>
-#include <psapi.h>
 #include <initguid.h>
 #include <dbgeng.h>
 
